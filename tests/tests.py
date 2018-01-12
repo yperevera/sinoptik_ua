@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-# web elements
+# ----- web elements ----- #
 ## logo
 top_logo_img_xpath = "//div[@class='bLogo']/img"
 top_logo_a_xpath = "//div[@class='bLogo']/img/../a"
@@ -18,8 +18,10 @@ platform_switch_xpath = "//a[@class='itypeSwitcher']"
 ## localization
 localization_xpath = "//div[@id='sLang']"
 
+## city and region name
+city_and_region_name_xpath = "//div[@class='cityName cityNameShort']"
 
-city_name_xpath = "//div[@class='cityName cityNameShort']"
+
 top_menu_xpath = "//div[@id='topMenu']"
 main_content_block_xpath = "//div[@id='mainContentBlock']"
 bottom_ad_block_xpath = "//div[@id='leftCol']/div[contains(@style, 'width')]"
@@ -28,7 +30,12 @@ right_ad_block_xpath = "//div[@id='rightCol']"
 footer_xpath = "//div[@id='footer']"
 copyright_xpath = "//div[@id='copyright']"
 
-# expected
+# ------------------------ #
+
+# ----- expected ------ #
+## title
+exp_title_text = "SINOPTIK: Погода в Украине, подробный прогноз погоды на неделю. Погода сегодня, завтра в Украине и Мире."
+
 ## expected logo
 exp_top_logo_img_src = "https://sinst.fwdcdn.com/img/newImg/sinoptic-logo-ny-2018.png"
 exp_top_logo_img_alt = "погода"
@@ -66,8 +73,15 @@ exp_localization_tag_a_rel = "alternate"
 exp_localization_tag_a_hreflang = "uk"
 exp_localization_tag_a_text = "українською"
 
+## city and region name
+exp_city_and_region_name_
+exp_city_and_region_name_
+exp_city_and_region_name_
+exp_city_and_region_name_
 
 
+
+# --------------------- #
 
 
 def get_elements_list_xpath(driver, xpath):
@@ -80,7 +94,10 @@ def get_element_xpath(driver, xpath):
 
 def open_url(driver, main_url):
     driver.get(main_url)
+    # url
     assert driver.current_url == main_url
+    # title
+    assert driver.title == exp_title_text
 
 
 def verify_main_page_elements_presence(driver):
@@ -92,8 +109,8 @@ def verify_main_page_elements_presence(driver):
     assert get_element_xpath(driver, platform_switch_xpath).is_displayed() == False
     # localization
     assert get_element_xpath(driver, localization_xpath).is_displayed() == True
-    # city name
-    assert get_element_xpath(driver, city_name_xpath).is_displayed() == True
+    # city and region name
+    assert get_element_xpath(driver, city_and_region_name_xpath).is_displayed() == True
     # top menu
     assert get_element_xpath(driver, top_menu_xpath).is_displayed() == True
     # main content block
@@ -202,7 +219,8 @@ def verify_localization_option(driver):
     assert localization_tag_a.get_attribute('innerText') == exp_localization_tag_a_text
 
 
-
+def verify_city_and_region_name(driver):
+    
 
 
 
