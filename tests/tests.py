@@ -33,24 +33,24 @@ def open_url(driver, main_url):
 
 def verify_main_page_elements_presence(driver):
     # logo
-    assert get_element_xpath(top_logo_xpath).is_displayed() == True
+    assert get_element_xpath(driver, top_logo_xpath).is_displayed() == True
     # search form
-    assert get_element_xpath(search_form_xpath).is_displayed() == True
+    assert get_element_xpath(driver, search_form_xpath).is_displayed() == True
     # localization
-    assert get_element_xpath(localization_xpath).is_displayed() == True
+    assert get_element_xpath(driver, localization_xpath).is_displayed() == True
     # city name
-    assert get_element_xpath(city_name_xpath).is_displayed() == True
+    assert get_element_xpath(driver, city_name_xpath).is_displayed() == True
     # top menu
-    assert get_element_xpath(top_menu_xpath).is_displayed() == True
+    assert get_element_xpath(driver, top_menu_xpath).is_displayed() == True
     # main content block
-    assert get_element_xpath(main_content_block_xpath).is_displayed() == True
+    assert get_element_xpath(driver, main_content_block_xpath).is_displayed() == True
     # bottom ads block
-    assert get_element_xpath(bottom_ad_block_xpath).is_displayed() == True
+    assert get_element_xpath(driver, bottom_ad_block_xpath).is_displayed() == True
     # other cities weather
-    assert get_element_xpath(other_cities_weather_xpath).is_displayed() == True
+    assert get_element_xpath(driver, other_cities_weather_xpath).is_displayed() == True
     # right ad block
-    assert get_element_xpath(right_ad_block_xpath).is_displayed() == True
+    assert get_element_xpath(driver, right_ad_block_xpath).is_displayed() == True
     # footer
-    assert get_element_xpath(footer_xpath).is_displayed() == True
+    assert get_element_xpath(driver, footer_xpath).is_displayed() == True
     # copyright
-    assert get_element_xpath(copyright_xpath).is_displayed() == True
+    assert get_element_xpath(driver, copyright_xpath).is_displayed() == True

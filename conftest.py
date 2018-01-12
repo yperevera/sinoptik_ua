@@ -1,4 +1,4 @@
-import pytets
+import pytest
 from selenium.webdriver import Chrome
 
 def pytest_addoption(parser):
