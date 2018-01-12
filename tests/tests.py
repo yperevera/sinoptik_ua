@@ -23,6 +23,11 @@ city_and_region_xpath = "//div[@class='cityName cityNameShort']"
 
 ## top menu
 top_menu_xpath = "//div[@id='topMenu']"
+top_menu_tag_a1_xpath = "//a[@class='menu-item']"
+top_menu_tag_a2_xpath = "//a[@class='otherCity']"
+top_menu_tag_span_xpath = "//span[@class='tMenu']"
+
+
 main_content_block_xpath = "//div[@id='mainContentBlock']"
 bottom_ad_block_xpath = "//div[@id='leftCol']/div[contains(@style, 'width')]"
 other_cities_weather_xpath = "//div[@id='tenOtherCities']"
@@ -81,6 +86,13 @@ exp_city_and_region_tag_div_len = 1
 exp_city_and_region_text = "Погода в "
 exp_city_and_region_tag_div_class = "currentRegion"
 
+## top menu
+exp_top_menu_tag_a_len = 2
+exp_top_menu_tag_span_len = 1
+exp_top_menu_text = "7 дней  10 дней\nпогода на карте\n"
+#exp_top_menu_tag_a1_text = "7 дней"
+#exp_top_menu_tag_span_text = "10 дней"
+#exp_top_menu_tag_a2_text = "погода на карте"
 
 
 # --------------------- #
@@ -237,6 +249,26 @@ def verify_city_and_region(driver):
     # div class
     assert city_and_region_tag_div.get_attribute('class') == exp_city_and_region_tag_div_class
 
+
+def verify_top_menu(driver):
+    top_menu = get_element_xpath(driver, top_menu_xpath)
+    top_menu_tag_a1 = get_element_xpath(driver, top_menu_tag_a1_xpath)
+    top_menu_tag_a2 = get_element_xpath(driver, top_menu_tag_a2_xpath)
+    top_menu_tag_span = get_element_xpath(driver, top_menu_tag_span_xpath)
+
+    # count of 'a' tags
+    assert len(get_elements_list_xpath(top_menu, "a")) == exp_top_menu_tag_a_len
+    # count of 'span' tags
+    assert len(get_elements_list_xpath(top_menu, "span")) == exp_top_menu_tag_span_len
+
+    # text
+    assert top_menu.get_attribute('innerText') == exp_top_menu_text
+
+    # attribute 'class' of 'a1', 'a2' and 'span' tags was self verified by creating
+    # variables 'top_menu_tag_a1', 'top_menu_tag_a2', 'top_menu_tag_span'
+
+    # attribute 'innerText' is not valid to verify in each tag ('a1', 'a2', 'span'),
+    # because actual text moves between tegs 'a1', 'a2' and 'span' unexpectedly
 
 
 

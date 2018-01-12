@@ -27,3 +27,7 @@ def test_localization_option(driver):
 # Test 7 Verify city and region
 def test_city_and_region(driver):
     tests.verify_city_and_region(driver)
+
+# Test 8 Verify top menu
+def test_top_menu(driver):
+    tests.verify_top_menu(driver)
