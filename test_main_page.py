@@ -4,7 +4,7 @@ import tests.tests as tests
 def test_open_main_page(driver, main_url):
     tests.open_url(driver, main_url)
 
-# Test 2 Verify that ALL main elements are displayed
+# Test 2 Verify that ALL main elements are displayed or not (if expected)
 def test_main_page_elements_presence(driver):
     tests.verify_main_page_elements_presence(driver)
 
