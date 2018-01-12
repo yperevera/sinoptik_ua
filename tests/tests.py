@@ -74,10 +74,12 @@ exp_localization_tag_a_hreflang = "uk"
 exp_localization_tag_a_text = "українською"
 
 ## city and region name
-exp_city_and_region_name_
-exp_city_and_region_name_
-exp_city_and_region_name_
-exp_city_and_region_name_
+exp_city_and_region_name_tag_h1_len = 1
+# 'deep' means searching for specified tag recursively (through all lower tags)
+exp_city_and_region_name_deep_tag_strong = 1
+exp_city_and_region_name_tag_div_len = 1
+exp_city_and_region_name_text = "Погода в "
+exp_city_and_region_name_tag_div_class = "currentRegion"
 
 
 
@@ -220,8 +222,20 @@ def verify_localization_option(driver):
 
 
 def verify_city_and_region_name(driver):
-    
+    city_and_region_name = get_element_xpath(driver, city_and_region_name_xpath)
+    city_and_region_name_tag_div = get_element_xpath(city_and_region_name, "div")
 
+    # count of 'h1' tags
+    assert len(get_elements_list_xpath(city_and_region_name, "h1")) == exp_city_and_region_name_tag_h1_len
+    # count of 'strong' tags
+    assert len(get_elements_list_xpath(city_and_region_name, "*/strong")) == exp_city_and_region_name_deep_tag_strong
+    # count of 'div' tags
+    assert len(get_elements_list_xpath(city_and_region_name, "div")) == exp_city_and_region_name_tag_div_len
+
+    # text
+    assert city_and_region_name.get_attribute('innerText')[:9] == exp_city_and_region_name_text
+    # div class
+    assert city_and_region_name_tag_div.get_attribute('class') == exp_city_and_region_name_tag_div_class
 
 
 
