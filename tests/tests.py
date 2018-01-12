@@ -1,11 +1,13 @@
 from selenium.webdriver.common.by import By
 
-# elements
+# web elements
 ## logo
 top_logo_img_xpath = "//div[@class='bLogo']/img"
 top_logo_a_xpath = "//div[@class='bLogo']/img/../a"
 
+## search form
 search_form_xpath = "//form[@id='form-search']"
+
 localization_xpath = "//div[@id='sLang']"
 city_name_xpath = "//div[@class='cityName cityNameShort']"
 top_menu_xpath = "//div[@id='topMenu']"
@@ -25,6 +27,9 @@ exp_top_logo_img_size = {"width": 239, "height": 89}
 exp_top_logo_a_href = "https://sinoptik.ua/"
 exp_top_logo_a_title = exp_top_logo_img_alt
 exp_top_logo_text = "Прогноз погоды"
+
+## search form
+exp_search_form_p_tag_len = 2
 
 
 
@@ -66,11 +71,10 @@ def verify_main_page_elements_presence(driver):
     assert get_element_xpath(driver, copyright_xpath).is_displayed() == True
 
 
-def varify_logo_attributes(driver):
+def verify_logo(driver):
     img_element = get_element_xpath(driver, top_logo_img_xpath)
     img_size = img_element.size
     a_element = get_element_xpath(driver, top_logo_a_xpath)
-    
 
     # img src
     assert img_element.get_attribute('src') == exp_top_logo_img_src
@@ -88,3 +92,10 @@ def varify_logo_attributes(driver):
     assert a_element.get_attribute('title') == exp_top_logo_a_title
     # a text
     assert a_element.text == exp_top_logo_text
+
+
+def verify_search_form(driver):
+    search_form = get_element_xpath(driver, search_form_xpath)
+
+    # count of 'p' tags
+    assert len(get_elements_list_xpath(search_form, "p")) == exp_search_form_p_tag_len
