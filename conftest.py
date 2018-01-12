@@ -14,6 +14,7 @@ def driver(request):
       driver.get("about:blank")
       driver.implicitly_wait(10)
       driver.maximize_window()
+      request.addfinalizer(driver.quit)
       return driver
    else:
       print("Only Chrome browser is supported at the moment.")
