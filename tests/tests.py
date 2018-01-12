@@ -18,10 +18,10 @@ platform_switch_xpath = "//a[@class='itypeSwitcher']"
 ## localization
 localization_xpath = "//div[@id='sLang']"
 
-## city and region name
-city_and_region_name_xpath = "//div[@class='cityName cityNameShort']"
+## city and region
+city_and_region_xpath = "//div[@class='cityName cityNameShort']"
 
-
+## top menu
 top_menu_xpath = "//div[@id='topMenu']"
 main_content_block_xpath = "//div[@id='mainContentBlock']"
 bottom_ad_block_xpath = "//div[@id='leftCol']/div[contains(@style, 'width')]"
@@ -73,13 +73,13 @@ exp_localization_tag_a_rel = "alternate"
 exp_localization_tag_a_hreflang = "uk"
 exp_localization_tag_a_text = "українською"
 
-## city and region name
-exp_city_and_region_name_tag_h1_len = 1
+## city and region
+exp_city_and_region_tag_h1_len = 1
 # 'deep' means searching for specified tag recursively (through all lower tags)
-exp_city_and_region_name_deep_tag_strong = 1
-exp_city_and_region_name_tag_div_len = 1
-exp_city_and_region_name_text = "Погода в "
-exp_city_and_region_name_tag_div_class = "currentRegion"
+exp_city_and_region_deep_tag_strong = 1
+exp_city_and_region_tag_div_len = 1
+exp_city_and_region_text = "Погода в "
+exp_city_and_region_tag_div_class = "currentRegion"
 
 
 
@@ -111,8 +111,8 @@ def verify_main_page_elements_presence(driver):
     assert get_element_xpath(driver, platform_switch_xpath).is_displayed() == False
     # localization
     assert get_element_xpath(driver, localization_xpath).is_displayed() == True
-    # city and region name
-    assert get_element_xpath(driver, city_and_region_name_xpath).is_displayed() == True
+    # city and region
+    assert get_element_xpath(driver, city_and_region_xpath).is_displayed() == True
     # top menu
     assert get_element_xpath(driver, top_menu_xpath).is_displayed() == True
     # main content block
@@ -221,21 +221,21 @@ def verify_localization_option(driver):
     assert localization_tag_a.get_attribute('innerText') == exp_localization_tag_a_text
 
 
-def verify_city_and_region_name(driver):
-    city_and_region_name = get_element_xpath(driver, city_and_region_name_xpath)
-    city_and_region_name_tag_div = get_element_xpath(city_and_region_name, "div")
+def verify_city_and_region(driver):
+    city_and_region = get_element_xpath(driver, city_and_region_xpath)
+    city_and_region_tag_div = get_element_xpath(city_and_region, "div")
 
     # count of 'h1' tags
-    assert len(get_elements_list_xpath(city_and_region_name, "h1")) == exp_city_and_region_name_tag_h1_len
+    assert len(get_elements_list_xpath(city_and_region, "h1")) == exp_city_and_region_tag_h1_len
     # count of 'strong' tags
-    assert len(get_elements_list_xpath(city_and_region_name, "*/strong")) == exp_city_and_region_name_deep_tag_strong
+    assert len(get_elements_list_xpath(city_and_region, "*/strong")) == exp_city_and_region_deep_tag_strong
     # count of 'div' tags
-    assert len(get_elements_list_xpath(city_and_region_name, "div")) == exp_city_and_region_name_tag_div_len
+    assert len(get_elements_list_xpath(city_and_region, "div")) == exp_city_and_region_tag_div_len
 
     # text
-    assert city_and_region_name.get_attribute('innerText')[:9] == exp_city_and_region_name_text
+    assert city_and_region.get_attribute('innerText')[:9] == exp_city_and_region_text
     # div class
-    assert city_and_region_name_tag_div.get_attribute('class') == exp_city_and_region_name_tag_div_class
+    assert city_and_region_tag_div.get_attribute('class') == exp_city_and_region_tag_div_class
 
 
 

@@ -24,6 +24,6 @@ def test_platform_switch(driver):
 def test_localization_option(driver):
     tests.verify_localization_option(driver)
 
-# Test 7 Verify city and region name
-def test_city_and_region_name(driver):
-    tests.verify_city_and_region_name(driver)
+# Test 7 Verify city and region
+def test_city_and_region(driver):
+    tests.verify_city_and_region(driver)
