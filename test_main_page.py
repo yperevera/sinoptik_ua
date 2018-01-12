@@ -8,10 +8,14 @@ def test_open_main_page(driver, main_url):
 def test_main_page_elements_presence(driver):
     tests.verify_main_page_elements_presence(driver)
 
-# Test 3 Verify logo attributes, tags, values
+# Test 3 Verify logo
 def test_top_logo(driver):
     tests.verify_logo(driver)
 
-# Test 4 Verify search form attributes, tags, values
+# Test 4 Verify search form
 def test_search_form(driver):
     tests.verify_search_form(driver)
+
+# Test 5 Verify platform switch
+def test_platform_switch(driver):
+    tests.verify_platform_switch(driver)

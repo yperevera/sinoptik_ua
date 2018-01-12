@@ -50,6 +50,17 @@ exp_search_form_tag_p1_input2_type = "submit"
 exp_search_form_tag_p1_input2_value = "Погода"
 exp_search_form_tag_p2_a_max_len = 6
 
+## platform switch
+exp_platform_switch_attr_style = "display: none;"
+exp_platform_switch_attr_href = "javascript:;"
+exp_platform_switch_attr_onclick = "SIN.utility.cookie('_itype','smart',{expires:1});location.reload();"
+exp_platform_switch_text = "Мобильная версия сайта"
+
+
+
+
+
+
 
 def get_elements_list_xpath(driver, xpath):
     return driver.find_elements_by_xpath(xpath)
@@ -153,3 +164,15 @@ def verify_search_form(driver):
     ### count of 'a' tags
     assert len(get_elements_list_xpath(search_form_tag_p2, "a")) <= exp_search_form_tag_p2_a_max_len
 
+
+def verify_platform_switch(driver):
+    platform_switch = get_element_xpath(driver, platform_switch_xpath)
+
+    # a style
+    assert platform_switch.get_attribute('style') == exp_platform_switch_attr_style
+    # a href
+    assert platform_switch.get_attribute('href') == exp_platform_switch_attr_href
+    # a onclick
+    assert platform_switch.get_attribute('onclick') == exp_platform_switch_attr_onclick
+    # a text
+    assert platform_switch.get_attribute('innerText') == exp_platform_switch_text
