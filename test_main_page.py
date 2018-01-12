@@ -19,3 +19,7 @@ def test_search_form(driver):
 # Test 5 Verify platform switch
 def test_platform_switch(driver):
     tests.verify_platform_switch(driver)
+
+# Test 6 Verify localization option
+def test_localization_option(driver):
+    tests.verify_localization_option(driver)

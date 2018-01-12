@@ -15,7 +15,10 @@ search_form_tag_p2_xpath = "//p[@id='form-search-examples']"
 ## platform switch
 platform_switch_xpath = "//a[@class='itypeSwitcher']"
 
+## localization
 localization_xpath = "//div[@id='sLang']"
+
+
 city_name_xpath = "//div[@class='cityName cityNameShort']"
 top_menu_xpath = "//div[@id='topMenu']"
 main_content_block_xpath = "//div[@id='mainContentBlock']"
@@ -26,7 +29,7 @@ footer_xpath = "//div[@id='footer']"
 copyright_xpath = "//div[@id='copyright']"
 
 # expected
-## logo
+## expected logo
 exp_top_logo_img_src = "https://sinst.fwdcdn.com/img/newImg/sinoptic-logo-ny-2018.png"
 exp_top_logo_img_alt = "погода"
 exp_top_logo_img_title = "погода"
@@ -35,7 +38,7 @@ exp_top_logo_a_href = "https://sinoptik.ua/"
 exp_top_logo_a_title = "погода"
 exp_top_logo_text = "Прогноз погоды"
 
-## search form
+## expected search form
 exp_search_form_attr_action = "https://sinoptik.ua/redirector"
 exp_search_form_attr_method = "get"
 exp_search_form_tags_p_len = 2
@@ -50,13 +53,18 @@ exp_search_form_tag_p1_input2_type = "submit"
 exp_search_form_tag_p1_input2_value = "Погода"
 exp_search_form_tag_p2_a_max_len = 6
 
-## platform switch
+## expected platform switch
 exp_platform_switch_attr_style = "display: none;"
 exp_platform_switch_attr_href = "javascript:;"
 exp_platform_switch_attr_onclick = "SIN.utility.cookie('_itype','smart',{expires:1});location.reload();"
 exp_platform_switch_text = "Мобильная версия сайта"
 
-
+## expected localization
+exp_localization_text = "Sinoptik.ua українською"
+exp_localization_tag_a_len = 1
+exp_localization_tag_a_rel = "alternate"
+exp_localization_tag_a_hreflang = "uk"
+exp_localization_tag_a_text = "українською"
 
 
 
@@ -139,29 +147,29 @@ def verify_search_form(driver):
 
     # count of 'p' tags
     assert len(get_elements_list_xpath(search_form, "p")) == exp_search_form_tags_p_len
-    ## first 'p' tag
+    # first 'p' tag
     ## count of 'input' tags 
     assert len(get_elements_list_xpath(search_form_tag_p1, "input")) == exp_search_form_tag_p1_input_len
-    ### first input autocomplete
+    ## first input autocomplete
     assert search_form_tag_p1_input1.get_attribute('autocomplete') == exp_search_form_tag_p1_input1_autocomplete
-    ### first input name
+    ## first input name
     assert search_form_tag_p1_input1.get_attribute('name') == exp_search_form_tag_p1_input1_name
-    ### first input type
+    ## first input type
     assert search_form_tag_p1_input1.get_attribute('type') == exp_search_form_tag_p1_input1_type
-    ### first input placeholder
+    ## first input placeholder
     assert search_form_tag_p1_input1.get_attribute('placeholder') == exp_search_form_tag_p1_input1_placeholder
-    ### first input value
+    ## first input value
     #assert search_form_tag_p1_input1.get_attribute('value') == exp_search_form_tag_p1_input1_value, "Actual: " + search_form_tag_p1_input1.get_attribute('value') + ". Expected: " + exp_search_form_tag_p1_input1_value
-    ### first input class
+    ## first input class
     assert search_form_tag_p1_input1.get_attribute('class') == exp_search_form_tag_p1_input1_class
 
-    ### second input type
+    ## second input type
     assert search_form_tag_p1_input2.get_attribute('type') == exp_search_form_tag_p1_input2_type
-    ### second input value
+    ## second input value
     assert search_form_tag_p1_input2.get_attribute('value') == exp_search_form_tag_p1_input2_value
 
-    ## second 'p' tag
-    ### count of 'a' tags
+    # second 'p' tag
+    ## count of 'a' tags
     assert len(get_elements_list_xpath(search_form_tag_p2, "a")) <= exp_search_form_tag_p2_a_max_len
 
 
@@ -176,3 +184,30 @@ def verify_platform_switch(driver):
     assert platform_switch.get_attribute('onclick') == exp_platform_switch_attr_onclick
     # a text
     assert platform_switch.get_attribute('innerText') == exp_platform_switch_text
+
+
+def verify_localization_option(driver):
+    localization = get_element_xpath(driver, localization_xpath)
+    localization_tag_a = get_element_xpath(localization, "a")
+
+    # text
+    assert localization.get_attribute('innerText') == exp_localization_text
+    # count of 'a' tags
+    assert len(get_elements_list_xpath(localization, "a")) == exp_localization_tag_a_len
+    # a rel
+    assert localization_tag_a.get_attribute('rel') == exp_localization_tag_a_rel
+    # a hreflang
+    assert localization_tag_a.get_attribute('hreflang') == exp_localization_tag_a_hreflang
+    # a text
+    assert localization_tag_a.get_attribute('innerText') == exp_localization_tag_a_text
+
+
+
+
+
+
+
+
+
+
+
