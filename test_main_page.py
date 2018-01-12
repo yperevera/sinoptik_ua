@@ -31,3 +31,7 @@ def test_city_and_region(driver):
 # Test 8 Verify top menu
 def test_top_menu(driver):
     tests.verify_top_menu(driver)
+
+# Test 9 Verify left column
+def test_left_column(driver):
+    tests.verify_left_column(driver)

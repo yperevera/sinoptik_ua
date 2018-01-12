@@ -27,10 +27,15 @@ top_menu_tag_a1_xpath = "//a[@class='menu-item']"
 top_menu_tag_a2_xpath = "//a[@class='otherCity']"
 top_menu_tag_span_xpath = "//span[@class='tMenu']"
 
-
-main_content_block_xpath = "//div[@id='mainContentBlock']"
+## left column
+under_termometr_ad_xpath = "//div[@style='position:relative']"
+under_termometr_ad_div_xpath = "//div[@class='under-termometr']"
+under_termometr_ad_div_div_xpath = "//div[@id='adriver_210x67']"
+main_content_xpath = "//div[@id='mainContentBlock']"
 bottom_ad_block_xpath = "//div[@id='leftCol']/div[contains(@style, 'width')]"
 other_cities_weather_xpath = "//div[@id='tenOtherCities']"
+
+
 right_ad_block_xpath = "//div[@id='rightCol']"
 footer_xpath = "//div[@id='footer']"
 copyright_xpath = "//div[@id='copyright']"
@@ -78,7 +83,7 @@ exp_localization_tag_a_rel = "alternate"
 exp_localization_tag_a_hreflang = "uk"
 exp_localization_tag_a_text = "українською"
 
-## city and region
+## expected city and region
 exp_city_and_region_tag_h1_len = 1
 # 'deep' means searching for specified tag recursively (through all lower tags)
 exp_city_and_region_deep_tag_strong = 1
@@ -86,13 +91,22 @@ exp_city_and_region_tag_div_len = 1
 exp_city_and_region_text = "Погода в "
 exp_city_and_region_tag_div_class = "currentRegion"
 
-## top menu
+## expected top menu
 exp_top_menu_tag_a_len = 2
 exp_top_menu_tag_span_len = 1
 exp_top_menu_text = "7 дней  10 дней\nпогода на карте\n"
 
-
-
+## expected left column
+exp_left_column_under_termometr_ad_tag_div_len = 1
+exp_left_column_under_termometr_ad_tag_div_div_len = 1
+exp_left_column_main_content_deep_tag_div_len = 98
+exp_left_column_
+exp_left_column_
+exp_left_column_
+exp_left_column_
+exp_left_column_
+exp_left_column_
+exp_left_column_
 
 
 
@@ -129,7 +143,7 @@ def verify_main_page_elements_presence(driver):
     # top menu
     assert get_element_xpath(driver, top_menu_xpath).is_displayed() == True
     # main content block
-    assert get_element_xpath(driver, main_content_block_xpath).is_displayed() == True
+    assert get_element_xpath(driver, main_content_xpath).is_displayed() == True
     # bottom ads block
     assert get_element_xpath(driver, bottom_ad_block_xpath).is_displayed() == True
     # other cities weather
@@ -272,7 +286,28 @@ def verify_top_menu(driver):
     # because actual text moves between tegs 'a1', 'a2' and 'span' unexpectedly
 
 
+def verify_left_column(driver):
+    under_termometr_ad = get_element_xpath(driver, under_termometr_ad_xpath)
+    under_termometr_ad_div = get_element_xpath(driver, under_termometr_ad_div_xpath)
+    under_termometr_ad_div_div = get_element_xpath(driver, under_termometr_ad_div_div_xpath)
+    main_content = get_element_xpath(driver, main_content_xpath)
 
+    # under termometr block
+    # count of 'div' tags
+    assert len(get_elements_list_xpath(under_termometr_ad, "div")) == exp_left_column_under_termometr_ad_tag_div_len
 
+    # attribute 'class' of 'div' tag was self verified by creating
+    # variable 'under_termometr_ad_div'
+
+    ## count of 'div' tags
+    assert len(get_elements_list_xpath(under_termometr_ad_div, "div")) == exp_left_column_under_termometr_ad_tag_div_div_len
+    
+    ## attribute 'id' of 'div' tag was self verified by creating
+    ## variable 'under_termometr_ad_div_div'
+
+    # main content block
+    # count of 'div' tags (deep)
+    assert len(get_elements_list_xpath(main_content, "*/div")) == exp_left_column_main_content_deep_tag_div_len
+    
 
 
