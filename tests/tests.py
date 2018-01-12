@@ -21,6 +21,7 @@ copyright_xpath = "//div[@id='copyright']"
 exp_top_logo_img_src = "https://sinst.fwdcdn.com/img/newImg/sinoptic-logo-ny-2018.png"
 exp_top_logo_img_alt = "погода"
 exp_top_logo_img_title = exp_top_logo_img_alt
+exp_top_logo_img_size = {"width": 239, "height": 89}
 exp_top_logo_a_href = "https://sinoptik.ua/"
 exp_top_logo_a_title = exp_top_logo_img_alt
 exp_top_logo_text = "Прогноз погоды"
@@ -67,7 +68,9 @@ def verify_main_page_elements_presence(driver):
 
 def varify_logo_attributes(driver):
     img_element = get_element_xpath(driver, top_logo_img_xpath)
+    img_size = img_element.size
     a_element = get_element_xpath(driver, top_logo_a_xpath)
+    
 
     # img src
     assert img_element.get_attribute('src') == exp_top_logo_img_src
@@ -75,6 +78,9 @@ def varify_logo_attributes(driver):
     assert img_element.get_attribute('alt') == exp_top_logo_img_alt
     # img title
     assert img_element.get_attribute('title') == exp_top_logo_img_title
+    # img size of element
+    assert img_size['width'] == exp_top_logo_img_size['width']
+    assert img_size['height'] == exp_top_logo_img_size['height']
 
     # a href
     assert a_element.get_attribute('href') == exp_top_logo_a_href
