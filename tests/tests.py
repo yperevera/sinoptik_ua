@@ -90,9 +90,10 @@ exp_city_and_region_tag_div_class = "currentRegion"
 exp_top_menu_tag_a_len = 2
 exp_top_menu_tag_span_len = 1
 exp_top_menu_text = "7 дней  10 дней\nпогода на карте\n"
-#exp_top_menu_tag_a1_text = "7 дней"
-#exp_top_menu_tag_span_text = "10 дней"
-#exp_top_menu_tag_a2_text = "погода на карте"
+
+
+
+
 
 
 # --------------------- #
