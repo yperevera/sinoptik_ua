@@ -100,13 +100,13 @@ exp_top_menu_text = "7 дней  10 дней\nпогода на карте\n"
 exp_left_column_under_termometr_ad_tag_div_len = 1
 exp_left_column_under_termometr_ad_tag_div_div_len = 1
 exp_left_column_main_content_deep_tag_div_len = 98
-exp_left_column_
-exp_left_column_
-exp_left_column_
-exp_left_column_
-exp_left_column_
-exp_left_column_
-exp_left_column_
+#exp_left_column_
+#exp_left_column_
+#exp_left_column_
+#exp_left_column_
+#exp_left_column_
+#exp_left_column_
+#exp_left_column_
 
 
 
@@ -119,6 +119,10 @@ def get_elements_list_xpath(driver, xpath):
 
 def get_element_xpath(driver, xpath):
     return driver.find_element_by_xpath(xpath)
+
+
+def get_elements_list_css(driver, css):
+    return driver.find_elements_by_css_selector(css)
 
 
 def open_url(driver, main_url):
@@ -307,7 +311,7 @@ def verify_left_column(driver):
 
     # main content block
     # count of 'div' tags (deep)
-    assert len(get_elements_list_xpath(main_content, "*/div")) == exp_left_column_main_content_deep_tag_div_len
+    assert len(get_elements_list_css(main_content, "div")) == exp_left_column_main_content_deep_tag_div_len, "Actual: " + str(len(get_elements_list_xpath(main_content, "*/div"))) + ". Expected: " + str(exp_left_column_main_content_deep_tag_div_len)
     
 
 
