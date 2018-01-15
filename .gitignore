@@ -1,4 +1,7 @@
 debug.log
+helper/debug.log
+helper/data.txt
+helper/sinoptik_parser.log
 .cache
 __pycache__
 tests/__pycache__/*
